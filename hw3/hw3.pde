@@ -1,39 +1,26 @@
-float x1, y1, d1, x2, y2, d2;
+float x3, y3, d3, vx3, vy3;
 void setup() {
   size(700, 700);
   
-  x1=x2=100;
-  y1=y2=150;
-  d1=d2=100;
+  x3=100;
+  y3=150;
+  d3=100;
+  vx3=2;
+  vy3=3;
   }
 
 void draw(){
     background(255);
-    
-    penguin(x1, y1, d1);
-    penguin(x2, y2, d2);
-
-    if (x1<width && x1>0) x1+=2; 
-    else if (x=width) {
-        
-        
-    }
-    else {
-        x1=0; 
+    x3 += vx3;
+    y3 += vy3;
+    penguin(x3, y3, d3);
+    if (x3>width || x3==0){
+      vx3 = -vx3 ;
     } 
-    /* for문 조건에 width를 넣어서 튕김 재현 */
-    
-    switch () {
-        
+    if (y3>height || y3==0) {
+      vy3 = -vy3 ;
     }
-    while (y2<height) {
-        y2+=2;
-    }
-    
-
 }
-
-
 
 void penguin(float x, float y, float d){
   background(255); // 흰색 배경

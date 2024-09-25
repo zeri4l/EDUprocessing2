@@ -15,26 +15,28 @@ import java.io.IOException;
 
 public class hw3 extends PApplet {
 
-float x1, y1, d1;
+float x3, y3, d3, vx3, vy3;
 public void setup() {
   /* size commented out by preprocessor */;
   
-  x1=100;
-  y1=450;
-  d1=200;
+  x3=100;
+  y3=150;
+  d3=100;
+  vx3=2;
+  vy3=3;
   }
 
 public void draw(){
     background(255);
-    
-    penguin(x1, y1, d1);
-    if (x1<width && x1>0) x1+=2; 
-    else {
-        x1=0; 
+    x3 += vx3;
+    y3 += vy3;
+    penguin(x3, y3, d3);
+    if (x3>width || x3==0){
+      vx3 = -vx3 ;
     } 
-    
-    
-
+    if (y3>height || y3==0) {
+      vy3 = -vy3 ;
+    }
 }
 
 
