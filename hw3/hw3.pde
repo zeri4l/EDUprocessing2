@@ -1,4 +1,7 @@
-float x3, y3, d3, vx3, vy3;
+float x3, y3, d3, vx3, vy3; 
+float x1,y1,d1,vx1,vy1;
+float x2, y2, d2, vx2, vy2;
+  
 void setup() {
   size(700, 700);
   
@@ -7,7 +10,15 @@ void setup() {
   d3=100;
   vx3=2;
   vy3=3;
+  x2 = 300;
+  y2 = 200;
+  d2 = 15;
+  vx2 = 2;
+  vy2 = 2;
+  x1 = 100; y1 = 50; d1 = 10; vx1 = 2; vy1 = 2;
   }
+ 
+
 
 void draw(){
     background(255);
@@ -20,10 +31,21 @@ void draw(){
     if (y3>height || y3==0) {
       vy3 = -vy3 ;
     }
+    x2 += vx2; 
+  y2 +=vy2; 
+  kjm(x2,y2,d2); 
+
+if(x2<0 || x2>width) vx2 = -vx2;   
+if(y2<0 || y2>height) vy2 = -vy2; 
+
+x1 += vx1;   y1 +=vy1;
+  face(x1,y1,d1);
+  if(x1<0 || x1>width) vx1 = -vx1;
+  if(y1<0 || y1>height) vy1 = -vy1;
 }
 
 void penguin(float x, float y, float d){
-  background(255); // 흰색 배경
+  background(220); // 흰색 배경
    // 펭귄 몸통
   stroke(0);
   strokeWeight(d*0.06);
@@ -76,4 +98,29 @@ void penguin(float x, float y, float d){
   ellipse(x - d * 0.2, y + d * 0.8, d * 0.4, d * 0.2); // 왼쪽 발
   ellipse(x + d * 0.2, y + d * 0.8, d * 0.4, d * 0.2); // 오른쪽 발
   
+}
+ void kjm(float kim, float jae, float min){
+ fill(80,80,80);
+ quad(kim,jae,kim,jae+15*min,kim+20*min,jae+15*min,kim+20*min,jae);
+ fill(255,255,255);
+ square(kim+6*min,jae+5*min,2*min);
+ square(kim+12*min,jae+5*min,2*min);
+ stroke(255,255,255);
+line(kim+9*min,jae+7*min,kim+11*min,jae+7*min);
+noStroke();
+fill(255,164,179);
+triangle(kim+10*min,jae-6*min,kim+8*min,jae,kim+12*min,jae);
+fill(255,255,0);
+circle(kim+10*min,jae-6*min,2*min);
+}
+void face(float x, float y, float d){
+  fill(255);
+  circle(x*2,y*4,d*20);//face
+  circle(x*2-d*4,y*3+d,d*4);//left eye
+  circle(x*2+d*4,y*3+d,d*4);//right eye
+  arc(x*2-d*4,y*3-d,d*4,d*2,PI,2*PI);//right eyebrow
+  arc(x*2+d*4,y*3-d,d*4,d*2,PI,2*PI);//left eyebrow
+  arc(x*2,y*4+d,d*3,d,0.5*PI,1.5*PI);//nose
+  fill(255,0,0);
+  arc(x*2,y*4+d*4,d*6,d*2,0,PI);//mouth
 }
