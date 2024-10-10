@@ -9,7 +9,7 @@ void draw(){
   face(x1,y1,d1);
   if(x1<0 || x1>width) vx1 = -vx1;
   if(y1<0 || y1>height) vy1 = -vy1;
-}
+} 
 void face(float x, float y, float d){
   fill(255);
   circle(x*2,y*4,d*20);//face
