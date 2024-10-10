@@ -1,6 +1,11 @@
 /* 캐릭터를 조종하여 장애물을 피하는 게임을 만들고자 함 */
 /* 캐릭터를 wasd로 조종할 수 있게 함 */
-/* 장애물이 랜덤 위치에서 나타나고 속도도 랜덤으로 설정함 */
+/* 장애물이 랜덤 위치에서 나타나고 속도도 랜덤으로 설정함 (최대 3)*/
+/* 장애물이 벽에 닿으면 튕기도록 함 */
+/* 캐릭터는 랜덤 스폰이고 속도는 10으로 설정 */
+/* 캐릭터의 위치는 size(1000, 600); 의 사각형을 넘지 못하게 함 */
+/* 장애물에 닿을 시 (dist 25 이내) 화면 색이 변화하고 game over 문구를 띄움 */
+
 
 float []x, y, gg, vx, vy;
 int n = 10;
@@ -15,7 +20,7 @@ void setup() {
     vy = new float[n];
 
     for (int i = 0; i < n; i++) {
-        x[i] = random(500, width);
+        x[i] = random(width);
         y[i] = random(height);
         gg[i] = random(255);
         vx[i] = random(3);
@@ -27,7 +32,7 @@ void setup() {
 void draw() {
     background(255, 255, 0);
     
-    // 게임 오버 체크
+    // 게임 오버 
     for (int k = 0; k < n; k++) {
         if (k != 4 && dist(x[4], y[4], x[k], y[k]) < 25) { // 충돌 감지
             gameOver();
