@@ -57,10 +57,15 @@ void draw() {
 }
 
 void keyPressed() {
-    if (key == 'a') x[4] = constrain(x[4] - 10, 0, width); // 범위 체크
+    if (key == 'a') x[4] = constrain(x[4] - 10, 0, width); // 범위 설정
     else if (key == 'd') x[4] = constrain(x[4] + 10, 0, width);
-    else if (key == 'w') y[4] = constrain(y[4] - 10, 0, height);
-    else if (key == 's') y[4] = constrain(y[4] + 10, 0, height);
+    else if (key == 'w') 
+    if (height > y[4] && 0 < y[4]) {
+        y[4] -= 10; }
+    else if (key == 's') 
+    if (height > y[4] && 0 < y[4]) {
+        y[4] += 10;
+    }
 }
 
 void mousePressed() {
@@ -74,7 +79,7 @@ void mousePressed() {
 }
 
 void smile(float a, float b, color c) {
-    fill(c); // 전달된 색상으로 채우기
+    fill(c); 
     circle(a, b, 50);
     circle(a - 10, b - 10, 10);
     circle(a + 10, b - 10, 10);
