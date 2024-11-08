@@ -1,5 +1,5 @@
 
-int n = 35;
+int n = 15;
 PacMan[] pacMen;
 penguin [] pg;
 mine[] mines = new mine[n];
