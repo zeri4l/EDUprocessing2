@@ -1,3 +1,11 @@
+/* 
+class penguin을 class redpenguin, bluepenguin이 상속
+class penguin 내에서 class fish 실행
+흰 펭귄, 붉은 펭귄, 푸른 펭귄이 입에 생선을 물고 있는 것을 구현
+*/
+
+
+
 penguin[] pg;
 
 void setup() {
