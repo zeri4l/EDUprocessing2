@@ -1,4 +1,4 @@
-penguin [] pg;
+penguin[] pg;
 
 void setup() {
   size(700, 700);
@@ -17,11 +17,13 @@ void draw() {
     }
     pg[i].move();
     pg[i].show();
+    pg[i].showFish(); // 생선 그리기
   }
 }
 
 class penguin {
   float x, y, d, vx, vy;
+  fish myFish; // 생선 객체
 
   penguin(float ax, float ay) {
     x = random(700);
@@ -29,6 +31,7 @@ class penguin {
     d = 50;
     vx = ax;
     vy = ay;
+    myFish = new fish(x, y - d * 0.75); // 펭귄 머리 위에 생선 위치 설정
   }
   
   void collide(penguin b) {
@@ -107,6 +110,37 @@ class penguin {
     if (y > height || y < 0) {
       vy = -vy;
     }
+    
+    // 생선 위치 업데이트
+    myFish.updatePosition(x, y - d * 0.2); // 펭귄 머리 위로 위치 조정
+  }
+
+  void showFish() {
+    myFish.show(); // 생선 그리기
+  }
+
+  class fish {
+    float x, y, size;
+
+    fish(float x, float y) {
+      this.x = x;
+      this.y = y;
+      this.size = 30; // 생선 크기
+    }
+
+    void show() {
+      fill(255, 200, 0); // 생선 색상
+      ellipse(x, y, size, size * 0.5); // 생선 몸통
+      fill(0, 150, 255); // 생선 꼬리 색상
+      triangle(x - size / 2, y, 
+               x - size, y - size * 0.2, 
+               x - size, y + size * 0.2); // 생선 꼬리
+    }
+    
+    void updatePosition(float newX, float newY) {
+      this.x = newX;
+      this.y = newY; // 생선 위치 업데이트
+    }
   }
 }
 
@@ -119,7 +153,7 @@ class redpenguin extends penguin {
     // 붉은색 배를 가진 펭귄
     super.show(); // 기본 펭귄 모양 그리기
     fill(255, 0, 0); // 붉은색
-     ellipse(x, y+9, d * 0.7, d * 0.8); // 붉은색 배
+    ellipse(x, y + 9, d * 0.7, d * 0.8); // 붉은색 배
   }
 }
 
@@ -132,6 +166,6 @@ class bluepenguin extends penguin {
     // 푸른색 배를 가진 펭귄
     super.show(); // 기본 펭귄 모양 그리기
     fill(0, 0, 255); // 푸른색
-     ellipse(x, y+9, d * 0.7, d * 0.8); // 푸른색 배
+    ellipse(x, y + 9, d * 0.7, d * 0.8); // 푸른색 배
   }
 }
