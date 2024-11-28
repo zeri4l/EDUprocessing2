@@ -27,11 +27,15 @@ void draw() {
   background(200);
   lights();
   
-    // 카메라 설정
+   // 카메라 설정
   if (isBirdEyeView) {
-    // 조감도(볼링공이 굴러가는 반대 방향)
-    translate(width / 2, height / 2, 200);
-    rotateX(-PI / 6);
+    // 조감도: 볼링공의 뒤쪽에서 바라보도록 설정
+    float camX = ball.x;
+    float camY = ball.y - 50; // 볼링공 위쪽에서
+    float camZ = ball.z - 100; // 볼링공 뒤쪽에서
+
+    // 카메라 위치 설정
+    camera(camX, camY, camZ, camX, ball.y, ball.z, 0, 1, 0);
   } else {
     // 볼링공 시점
     float camX = ball.x;
@@ -64,9 +68,9 @@ void draw() {
 }
 
 void keyPressed() {
-  if (key == 'a') {
+  if (key == 'd') {
     ball.move(-5);
-  } else if (key == 'd') {
+  } else if (key == 'a') {
     ball.move(5);
   } else if (key == ' ') { // 스페이스바를 눌렀을 때
     ball.roll(); // 볼링공 굴리기
@@ -80,9 +84,9 @@ class BowlingBall {
   boolean isRolling = false; // 볼링공이 굴러가는 상태
 
   BowlingBall() {
-    x = 0;
+    x = -3;
     y = -20; // 볼링공 위치를 레인 위로 조정
-    z = 0;
+    z = -50;
   }
   
   void move(float dx) {
